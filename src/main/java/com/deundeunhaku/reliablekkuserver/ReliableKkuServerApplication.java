@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ReliableKkuServerApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(ReliableKkuServerApplication.class, args);
+    SpringApplication.run(ReliableKkuServerApplication.class,  args);
   }
 
 }
