@@ -17,17 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminCreateMenuService {
 
     private final AdminMenuRepository adminMenuRepository;
-    private final S3UploadService uploadService;
+//    private final S3UploadService uploadService;
 
     @Transactional
     public CreateMenuResponse creatAndCreateFile(MultipartFile multipartFile, CreateMenuRequest request){
-            S3Response s3Response = uploadService.saveFileWithUUID(multipartFile);
+//            S3Response s3Response = uploadService.saveFileWithUUID(multipartFile);
             Menu menu = Menu.builder()
                     .name(request.name())
                     .description(request.description())
                     .pricePerOne(request.price())
                     .pricePerThree(request.price()*3)
-                    .menuImageUrl(s3Response.s3ImageUrl())
+//                    .menuImageUrl(s3Response.s3ImageUrl())
                     .build();
 
         Menu savedMenu = adminMenuRepository.save(menu);

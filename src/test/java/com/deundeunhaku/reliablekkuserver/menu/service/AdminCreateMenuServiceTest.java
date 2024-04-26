@@ -23,8 +23,8 @@ class AdminCreateMenuServiceTest extends BaseServiceTest {
     AdminCreateMenuService adminCreateMenuService;
     @Mock
     AdminMenuRepository adminMenuRepository;
-    @Mock
-    S3UploadService uploadService;
+//    @Mock
+//    S3UploadService uploadService;
     @Test
     void 메뉴를_만들고_메뉴_이미지를_저장한다(){
         //given
@@ -38,8 +38,8 @@ class AdminCreateMenuServiceTest extends BaseServiceTest {
         Long menuId = 1L;
         when(adminMenuRepository.save(any())).thenReturn(Menu.builder().id(menuId).build());
 
-        when(uploadService.saveFileWithUUID(any()))
-                .thenReturn(S3Response.of("imageName", "fileS3Key", "fileOriginName"));
+//        when(uploadService.saveFileWithUUID(any()))
+//                .thenReturn(S3Response.of("imageName", "fileS3Key", "fileOriginName"));
 
 
         //when

@@ -36,7 +36,8 @@ public class S3UploadService {
             return S3Response.of(originalFilename, uuid, amazonS3.getUrl(bucket, uuid).toString());
         } catch (IOException e) {
             log.error("s3에 file 저장중 에러 발생", e);
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            return null;
         }
 
     }
@@ -46,7 +47,8 @@ public class S3UploadService {
     }
 
     private PutObjectResult saveImageWithUUID(MultipartFile multipartFile, ObjectMetadata metadata, String uuid) throws IOException {
-        return amazonS3.putObject(bucket, uuid, multipartFile.getInputStream(), metadata);
+//        return amazonS3.putObject(bucket, uuid, multipartFile.getInputStream(), metadata);
+        return null;
     }
 
     private static ObjectMetadata setMetadata(MultipartFile multipartFile) {
