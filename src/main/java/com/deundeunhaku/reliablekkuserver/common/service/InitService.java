@@ -20,7 +20,7 @@ public class InitService {
   private final PasswordEncoder passwordEncoder;
   private final MenuRepository menuRepository;
 
-  @PostConstruct
+//  @PostConstruct
   public void init() {
     memberRepository.save(
         Member.builder()
