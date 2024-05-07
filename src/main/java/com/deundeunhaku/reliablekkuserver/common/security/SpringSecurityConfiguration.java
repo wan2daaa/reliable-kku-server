@@ -39,6 +39,8 @@ public class SpringSecurityConfiguration {
         .authorizeHttpRequests(auth ->
             auth
                 .requestMatchers(antMatcher("/docs/**")).permitAll()
+                .requestMatchers(antMatcher("/actuator/**")).permitAll()
+                .requestMatchers(antMatcher("/actuator")).permitAll()
                 .requestMatchers(antMatcher("/api/v1/login")).permitAll()
                 .requestMatchers(antMatcher("/api/v1/fcm")).permitAll()
                 .requestMatchers(antMatcher("/api/v1/token/**")).permitAll()
@@ -73,6 +75,7 @@ public class SpringSecurityConfiguration {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
     authProvider.setUserDetailsService(memberDetailsService);
     authProvider.setPasswordEncoder(passwordEncoder());
+
     return authProvider;
   }
 

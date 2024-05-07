@@ -3,10 +3,11 @@ plugins {
 	id 'org.springframework.boot' version '3.1.4'
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
+	id("com.palantir.docker") version "0.36.0"
 }
 
 group = 'com.deundeunhaku'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
 	sourceCompatibility = '17'
@@ -72,6 +73,7 @@ dependencies {
 
 //    Cool SMS
 	implementation 'net.nurigo:sdk:4.3.0'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 }
 
 
@@ -115,4 +117,21 @@ tasks.named('test') {
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+docker {
+	println(tasks.bootJar.outputs.files)
+
+	//이미지 이름
+	name project.name + ":" + version
+
+	//어떤 Dockerfile을 사용할지
+	dockerfile file("./Dockerfile-dev")
+
+	//어떤 파일들을 Dockerfile에 복사할 것인가
+	files tasks.bootJar.outputs.files
+
+	//Dockerfile에 전달할 인자
+	buildArgs(['JAR_FILE' : tasks.bootJar.outputs.files.singleFile.name])
+
 }
