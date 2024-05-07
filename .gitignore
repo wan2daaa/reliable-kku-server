@@ -5,6 +5,16 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+/db
+
+/src/docs/asciidoc
+/src/main/resources/static/docs
+
+/grafana
+/gradle
+gradlew
+gradlew.bat
+
 ### STS ###
 .apt_generated
 .classpath
