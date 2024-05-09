@@ -1,8 +1,17 @@
 # Base image
 FROM eclipse-temurin:17
 
-EXPOSE 8080
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
+# Set working directory
+WORKDIR /app
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Copy the JAR file built from your Spring Boot application
+COPY ./build/libs/*.jar app.jar
+
+# Environment variables
+ENV SPRING_PROFILES_ACTIVE=dev
+
+# Expose port if necessary
+EXPOSE 8080
+
+# Start the application
+CMD ["java", "-jar", "app.jar"]
