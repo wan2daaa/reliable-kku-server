@@ -11,7 +11,7 @@ run:
 	@./gradlew clean build
 
 	@echo "build docker image with platform linux/amd64"
-	@docker buildx build --platform linux/amd64 --load -t reliable-kku-server:1.0.0 -f ./Dockerfile-dev .
+	@docker buildx build --platform linux/amd64 --load -t reliable-kku-server:1.0.0 -f ./Dockerfile .
 
 	@echo "docker save"
 	@docker save reliable-kku-server:1.0.0 > ./reliable-kku-server.tar

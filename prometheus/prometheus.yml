@@ -9,6 +9,10 @@ global:
 scrape_configs:
   - job_name: 'app'
     metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
+    scrape_interval: 3s
     static_configs:
       - targets: ['app:8080']
+  - job_name: 'mysqld-exporter'
+    scrape_interval: 3s
+    static_configs:
+        - targets: ['mysql_exporter:9104']
