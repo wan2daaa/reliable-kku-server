@@ -21,7 +21,7 @@
 | <img src="https://avatars.githubusercontent.com/u/105191008?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/127480050?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/122874405?v=4" width="80"> | <img src="https://avatars.githubusercontent.com/u/106997436?v=4" width="80"> |
 |:----------------------------------------------------------------------------:|:----------------------------------------------------------------------------:|:----------------------------------------------------------------------------:|:----------------------------------------------------------------------------:|
 |                      [박재완](https://github.com/wan2daaa)                      |                    [정경주](https://github.com/gyeongju1230)                    |                       [김민진](https://github.com/MeanJK)                       |                    [김선규](https://github.com/seongyu-Kim)                     |
-|                                     백엔드                                      |                                    프론트엔드                                     |                                     백엔드                                      |                                    프론트엔드                                     |
+|                                     백엔드                                      |                                 프론트엔드(사용자 앱)                                 |                                     백엔드                                      |                                 프론트엔드(관리자 앱)                                 |
 
 ---
 
