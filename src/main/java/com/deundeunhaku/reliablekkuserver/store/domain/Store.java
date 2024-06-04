@@ -18,7 +18,6 @@ import org.hibernate.annotations.ColumnDefault;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name = "STORE")
 @Entity
 public class Store {
 

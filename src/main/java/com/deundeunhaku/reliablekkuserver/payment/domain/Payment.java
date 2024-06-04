@@ -36,7 +36,7 @@ public class Payment extends BaseEntity {
     private boolean paySuccessYn;
 
     @OneToOne
-    @JoinColumn(name = "order_tb_id")
+    @JoinColumn(name = "orders_id")
     private Order order;
 
     @Column

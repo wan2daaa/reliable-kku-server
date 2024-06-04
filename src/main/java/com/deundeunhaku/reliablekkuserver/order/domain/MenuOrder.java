@@ -26,7 +26,7 @@ public class MenuOrder extends BaseEntity {
   @Id
   @NotNull
   @ManyToOne
-  @JoinColumn(name = "order_id")
+  @JoinColumn(name = "orders_id")
   private Order order;
 
   @ColumnDefault("0")
