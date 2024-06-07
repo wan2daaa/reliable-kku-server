@@ -24,7 +24,6 @@ public class SchedulerService {
   public void sendLeftTimeWithSseToClient() {
 
     Map<Long, SseEmitter> allEmitter = sseService.getAllEmitter();
-    log.info("sse 남은시간 전달 scheduler 실행 orderId 리스트 : {}", allEmitter.keySet());
 
     for (Long id : allEmitter.keySet()) {
       if (id.equals(0L)){
