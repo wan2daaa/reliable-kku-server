@@ -76,12 +76,6 @@
 
 ![Jenkins](https://img.shields.io/badge/Jenkins-fff?style=for-the-badge&logo=Jenkins)
 
-#### Monitoring
-
-![Prometheus](https://img.shields.io/badge/Prometheus-fff?style=for-the-badge&logo=Prometheus)
-
-![Grafana](https://img.shields.io/badge/Grafana-fff?style=for-the-badge&logo=Grafana)
-
 ## 프로젝트 구조
 
 - 프로젝트는 **Spring Boot** 기반으로 구성되어 있어요.
