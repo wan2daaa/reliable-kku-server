@@ -22,27 +22,6 @@ services:
       - MYSQL_PASSWORD=mysqlpw
     command: --server-id=1 --log-bin=/var/lib/mysql/mysql-bin.log
 
-  mysql-slave:
-    image: mysql:latest
-    networks:
-      - network
-    volumes:
-      - ./db/slave/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./db/slave/data:/var/lib/mysql
-      - ./db/slave/initdb.d:/docker-entrypoint-initdb.d
-    env_file:
-      - .env
-    ports:
-      - "3306:3306"
-    restart: always
-    mem_limit: 1024m
-    environment:
-      - TZ=Asia/Seoul
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_USER=mysqluser
-      - MYSQL_PASSWORD=mysqlpw
-    command: --server-id=2 --log-bin=/var/lib/mysql/mysql-bin.log --slave-of=mysql --master-connect-retry=10
-
   app:
     image: wan2da/reliable-kku-server:1.0.0
     networks:
@@ -72,24 +51,6 @@ services:
       - app
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-
-  mysql_exporter:
-    image: prom/mysqld-exporter:latest
-    restart: always
-    container_name: mysqld-exporter
-    environment:
-      - DATA_SOURCE_NAME=exporter:password@(mysql:3306)
-    networks:
-      - network
-    ports:
-      - "9104:9104"
-    depends_on:
-      - mysql
-    volumes:
-      - ./prometheus/mysql/my.cnf:/home/.my.cnf
-    command:
-      - "--config.my-cnf=/home/.my.cnf"
-
 
   grafana:
     image: grafana/grafana:latest
