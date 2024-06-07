@@ -1,42 +1,21 @@
-#server:
-#  tomcat:
-#    threads:
-#      max: 350
-#      min-spare: 10
-#    max-connections: 300
-#    accept-count: 50
 spring:
-  jpa:
-    open-in-view: false
-  mvc:
-    async:
-      request-timeout: -1
   profiles:
     default: local
+  datasource:
+    url: jdbc:h2:mem:test_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+    driver-class-name: org.h2.Driver
+    username: root
+  jpa:
+    open-in-view: false
   config:
     import:
       - submodule/reliable-kku-server-submodule/application-s3.yaml
       - submodule/reliable-kku-server-submodule/application-jwt.yaml
       - submodule/reliable-kku-server-submodule/application-payment.yaml
       - submodule/reliable-kku-server-submodule/application-sms.yaml
-  datasource:
-    url: jdbc:h2:mem:test_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
-    driver-class-name: org.h2.Driver
-    username: root
-#    hikari:
-#      maximum-pool-size: 500
-#      leak-detection-threshold: 60000
-#      max-lifetime: 58000
-
 
 management:
   endpoints:
     web:
       exposure:
         include: "prometheus"
-
-
-#logging:
-#  level:
-#    com.zaxxer.hikari.HikariConfig: DEBUG
-#    com.zaxxer.hikari: TRACE
