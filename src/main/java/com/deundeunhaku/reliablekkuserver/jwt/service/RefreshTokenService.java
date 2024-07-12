@@ -11,18 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RefreshTokenService {
 
-  private final RefreshTokenRepository refreshTokenRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
-  @Transactional
-  public RefreshToken save(Member member, RefreshToken refreshToken) {
-    if (refreshTokenRepository.existsByMember(member)) {
-      RefreshToken findRefreshToken = refreshTokenRepository.findByMember(member)
-          .orElseThrow(() -> new IllegalArgumentException("member에 해당하는 refreshToken이 없습니다."));
-      findRefreshToken.updateRefreshToken(refreshToken.getRefreshToken());
+    @Transactional
+    public RefreshToken save(Member member, RefreshToken refreshToken) {
+        if (refreshTokenRepository.existsByMember(member)) {
+            RefreshToken findRefreshToken = refreshTokenRepository.findByMember(member)
+                    .orElseThrow(() -> new IllegalArgumentException("member에 해당하는 refreshToken이 없습니다."));
+            findRefreshToken.updateRefreshToken(refreshToken.getRefreshToken());
 
-      return findRefreshToken;
+            return findRefreshToken;
+        }
+
+        return refreshTokenRepository.save(refreshToken);
     }
-
-    return refreshTokenRepository.save(refreshToken);
-  }
 }

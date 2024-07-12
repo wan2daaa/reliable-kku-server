@@ -9,7 +9,7 @@ public record AdminSalesCalendarResponse(
         List<TotalSalesMonthOfDay> total
 ) {
 
-    public static AdminSalesCalendarResponse of(Integer lastMonthOnMonth, Integer totalSalesOfMonth, Integer totalRefundSalesOfMonth, List<TotalSalesMonthOfDay> total){
-        return new AdminSalesCalendarResponse(lastMonthOnMonth, totalSalesOfMonth, totalRefundSalesOfMonth,total);
+    public static AdminSalesCalendarResponse of(Integer lastMonthOnMonth, Integer totalSalesOfMonth, Integer totalRefundSalesOfMonth, List<TotalSalesMonthOfDay> total) {
+        return new AdminSalesCalendarResponse(lastMonthOnMonth, totalSalesOfMonth, totalRefundSalesOfMonth, total);
     }
 }

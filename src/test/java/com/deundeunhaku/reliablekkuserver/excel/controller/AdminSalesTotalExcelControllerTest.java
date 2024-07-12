@@ -52,19 +52,19 @@ class AdminSalesTotalExcelControllerTest extends BaseControllerTest {
                                         .createdAt(LocalDateTime.of(2023, 11, 1, 16, 30, 12))
                                         .orderPrice(3000)
                                         .isOfflineOrder(false)
-                                                .build()
+                                        .build()
                         )
                 );
 
         when(orderRepository.findOrderListAllSalesDataByCreateDateBetween(startDate, endDate)).thenReturn(
-            ExcelSalesStatisticsResponse.of(
-                    150000,
-                    3000L,
-                    10000,
-                    100L,
-                    130000,
-                    20000
-            )
+                ExcelSalesStatisticsResponse.of(
+                        150000,
+                        3000L,
+                        10000,
+                        100L,
+                        130000,
+                        20000
+                )
         );
 
         List<String> testMenuNames = Arrays.asList("Menu1", "Menu2", "Menu3"); // 테스트용 메뉴 이름 목록
@@ -78,9 +78,9 @@ class AdminSalesTotalExcelControllerTest extends BaseControllerTest {
         }
         //when
         ResultActions resultActions = mockMvc.perform(get(API + "/admin/excel")
-                .param("startDate", "2023-11-01")
-                .param("endDate", "2023-11-06")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .param("startDate", "2023-11-01")
+                        .param("endDate", "2023-11-06")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
         //then
         resultActions.andExpect(status().isOk())

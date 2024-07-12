@@ -3,18 +3,8 @@ package com.deundeunhaku.reliablekkuserver.menu.domain;
 import com.deundeunhaku.reliablekkuserver.common.domain.BaseEntity;
 import com.deundeunhaku.reliablekkuserver.member.domain.Member;
 import com.google.firebase.database.annotations.NotNull;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -47,13 +37,12 @@ public class Menu extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member onlineMember;
 
-
     private String menuImageUrl;
 
     @Builder
     public Menu(Long id, String name, String description, Integer pricePerOne,
-        Integer pricePerThree,
-        boolean isSale, Member onlineMember, String menuImageUrl) {
+                Integer pricePerThree,
+                boolean isSale, Member onlineMember, String menuImageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;

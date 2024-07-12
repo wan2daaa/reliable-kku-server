@@ -6,7 +6,10 @@ import com.deundeunhaku.reliablekkuserver.menu.service.AdminCreateMenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
@@ -15,9 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminCreateMenuController {
 
     private final AdminCreateMenuService adminCreateMenuService;
+
     @PostMapping("/create-menu")
     public ResponseEntity<CreateMenuResponse> createMenu(@RequestPart(value = "file", required = false) MultipartFile multipartFile,
-                                                         @RequestPart(value = "menu") CreateMenuRequest request){
+                                                         @RequestPart(value = "menu") CreateMenuRequest request) {
 
         CreateMenuResponse response = adminCreateMenuService.creatAndCreateFile(multipartFile, request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

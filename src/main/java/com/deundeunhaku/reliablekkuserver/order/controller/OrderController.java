@@ -2,17 +2,11 @@ package com.deundeunhaku.reliablekkuserver.order.controller;
 
 
 import com.deundeunhaku.reliablekkuserver.member.domain.Member;
-import com.deundeunhaku.reliablekkuserver.order.dto.LeftTimeResponse;
-import com.deundeunhaku.reliablekkuserver.order.dto.OrderCalendarResponse;
-import com.deundeunhaku.reliablekkuserver.order.dto.OrderIdResponse;
-import com.deundeunhaku.reliablekkuserver.order.dto.OrderRegisterRequest;
-import com.deundeunhaku.reliablekkuserver.order.dto.OrderResponse;
-import com.deundeunhaku.reliablekkuserver.order.dto.PastOrderResponse;
+import com.deundeunhaku.reliablekkuserver.order.dto.*;
 import com.deundeunhaku.reliablekkuserver.order.service.OrderService;
 import com.deundeunhaku.reliablekkuserver.payment.dto.PaymentCancelRequest;
 import com.deundeunhaku.reliablekkuserver.payment.service.PaymentService;
 import com.deundeunhaku.reliablekkuserver.sse.service.SseService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,8 +35,8 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<OrderResponse> getOrderId(@AuthenticationPrincipal Member member,@PathVariable Long orderId) {
-        return ResponseEntity.ok(orderService.getOrderMenuList(orderId , member));
+    public ResponseEntity<OrderResponse> getOrderId(@AuthenticationPrincipal Member member, @PathVariable Long orderId) {
+        return ResponseEntity.ok(orderService.getOrderMenuList(orderId, member));
     }
 
     @DeleteMapping("/{orderId}")

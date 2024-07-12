@@ -71,7 +71,6 @@ include::{snippets}/member/register/phone-number/certification-number/success/re
 
 include::{snippets}/member/register/phone-number/certification-number/success/http-response.adoc[]
 
-
 === 전화번호 인증번호 전송 실패 (휴대폰당 하루 열번만 가능)
 
 ==== Request
@@ -83,7 +82,6 @@ include::{snippets}/member/register/phone-number/certification-number/fail/http-
 include::{snippets}/member/register/phone-number/certification-number/fail/http-response.adoc[]
 include::{snippets}/member/register/phone-number/certification-number/fail/response-fields.adoc[]
 
-
 === 전화번호 인증번호 확인 성공
 
 ==== Request
@@ -94,6 +92,7 @@ Request Parameter::
 include::{snippets}/member/register/phone-number/certification-number/check/success/query-parameters.adoc[]
 
 ==== Response
+
 include::{snippets}/member/register/phone-number/certification-number/check/success/http-response.adoc[]
 include::{snippets}/member/register/phone-number/certification-number/check/success/response-fields.adoc[]
 
@@ -104,9 +103,9 @@ include::{snippets}/member/register/phone-number/certification-number/check/succ
 include::{snippets}/member/register/phone-number/certification-number/check/fail/http-request.adoc[]
 
 ==== Response
+
 include::{snippets}/member/register/phone-number/certification-number/check/fail/http-response.adoc[]
 include::{snippets}/member/register/phone-number/certification-number/check/fail/response-fields.adoc[]
-
 
 === 회원가입 성공
 
@@ -143,7 +142,6 @@ include::{snippets}/member/find-password/phone-number/certification-number/succe
 
 include::{snippets}/member/find-password/phone-number/certification-number/success/http-response.adoc[]
 
-
 === 전화번호 인증번호 전송 실패 (휴대폰당 하루 열번만 가능)
 
 ==== Request
@@ -155,7 +153,6 @@ include::{snippets}/member/find-password/phone-number/certification-number/fail/
 include::{snippets}/member/find-password/phone-number/certification-number/fail/http-response.adoc[]
 include::{snippets}/member/find-password/phone-number/certification-number/fail/response-fields.adoc[]
 
-
 === 전화번호 인증번호 확인 성공
 
 ==== Request
@@ -166,6 +163,7 @@ Request Parameter::
 include::{snippets}/member/find-password/phone-number/certification-number/check/success/query-parameters.adoc[]
 
 ==== Response
+
 include::{snippets}/member/find-password/phone-number/certification-number/check/success/http-response.adoc[]
 include::{snippets}/member/find-password/phone-number/certification-number/check/success/response-fields.adoc[]
 
@@ -176,9 +174,9 @@ include::{snippets}/member/find-password/phone-number/certification-number/check
 include::{snippets}/member/find-password/phone-number/certification-number/check/fail/http-request.adoc[]
 
 ==== Response
+
 include::{snippets}/member/find-password/phone-number/certification-number/check/fail/http-response.adoc[]
 include::{snippets}/member/find-password/phone-number/certification-number/check/fail/response-fields.adoc[]
-
 
 === 비밀번호 변경 성공
 

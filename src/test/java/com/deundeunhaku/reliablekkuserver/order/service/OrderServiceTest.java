@@ -27,7 +27,7 @@ class OrderServiceTest extends BaseServiceTest {
     private OrderRepository orderRepository;
 
     @Test
-    void 회원의_마이페이지_캘린더_리스트를_가져오는지_검증한다(){
+    void 회원의_마이페이지_캘린더_리스트를_가져오는지_검증한다() {
         //given
         Order order1 = Order.builder().createdDate(LocalDate.of(2023, 10, 24)).build();
         Order order2 = Order.builder().createdDate(LocalDate.of(2023, 10, 23)).build();

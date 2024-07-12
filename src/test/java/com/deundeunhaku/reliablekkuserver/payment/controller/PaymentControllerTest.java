@@ -25,6 +25,7 @@ class PaymentControllerTest extends BaseControllerTest {
 
     @MockBean
     private PaymentService paymentService;
+
     @Test
     void 결제를_승인한다() throws Exception {
         //given
@@ -36,8 +37,8 @@ class PaymentControllerTest extends BaseControllerTest {
 
         //when
         ResultActions resultActions = mockMvc.perform(post(API + "/payments/confirm")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
                 .andDo(print());
         //then
         resultActions.andExpect(status().isOk())
@@ -66,7 +67,7 @@ class PaymentControllerTest extends BaseControllerTest {
                                 fieldWithPath("card").description("카드 관련 정보"),
                                 fieldWithPath("type").description("결제 타입")
                         )*/
-                        ));
+                ));
 
     }
 
@@ -125,7 +126,7 @@ class PaymentControllerTest extends BaseControllerTest {
                                 fieldWithPath("amount").description("결제 금액")
                         ),
                         responseFields(
-                         fieldWithPath("message").description("에러 메시지")
+                                fieldWithPath("message").description("에러 메시지")
                         )
                 ));
 

@@ -14,13 +14,13 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @RequestMapping("/api/v1/admin/order/sse")
 public class AdminSseController {
 
-  private final AdminOrderService adminOrderService;
+    private final AdminOrderService adminOrderService;
 
-  @GetMapping(value = "/connect", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-  public ResponseEntity<SseEmitter> connect() {
+    @GetMapping(value = "/connect", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public ResponseEntity<SseEmitter> connect() {
 
-    SseEmitter connectedSseEmitter = adminOrderService.connectSse();
-    return ResponseEntity.ok(connectedSseEmitter);
-  }
+        SseEmitter connectedSseEmitter = adminOrderService.connectSse();
+        return ResponseEntity.ok(connectedSseEmitter);
+    }
 
 }

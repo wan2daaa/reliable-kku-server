@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/admin/member")
 public class AdminMemberController {
 
-  private final AdminMemberService adminMemberService;
+    private final AdminMemberService adminMemberService;
 
-  @GetMapping
-  public ResponseEntity<Slice<AdminMemberManagementResponse>> getMemberList(
-      @RequestParam(defaultValue = "") String searchKeyword,
-      @PageableDefault(sort = "id", direction = Direction.ASC) Pageable pageable) {
-    return ResponseEntity.ok(adminMemberService.getMemberList(searchKeyword, pageable));
-  }
+    @GetMapping
+    public ResponseEntity<Slice<AdminMemberManagementResponse>> getMemberList(
+            @RequestParam(defaultValue = "") String searchKeyword,
+            @PageableDefault(sort = "id", direction = Direction.ASC) Pageable pageable) {
+        return ResponseEntity.ok(adminMemberService.getMemberList(searchKeyword, pageable));
+    }
 
 }

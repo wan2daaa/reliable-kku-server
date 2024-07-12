@@ -1,10 +1,10 @@
 package com.deundeunhaku.reliablekkuserver.fcm.dto;
 
 public record FcmTokenRequest(
-    String token
+        String token
 ) {
 
-  public static FcmTokenRequest of(String token) {
-    return new FcmTokenRequest(token);
-  }
+    public static FcmTokenRequest of(String token) {
+        return new FcmTokenRequest(token);
+    }
 }

@@ -4,36 +4,37 @@ import com.deundeunhaku.reliablekkuserver.menu.dto.AdminMenuChangeResponse;
 import com.deundeunhaku.reliablekkuserver.menu.dto.MenuResponse;
 import com.deundeunhaku.reliablekkuserver.menu.service.AdminMenuService;
 import com.deundeunhaku.reliablekkuserver.menu.service.MenuService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/admin/menu")
 public class AdminMenuController {
 
-  private final MenuService menuService;
-  private final AdminMenuService adminMenuService;
+    private final MenuService menuService;
+    private final AdminMenuService adminMenuService;
 
-  @GetMapping
-  public ResponseEntity<List<MenuResponse>> getMenuList() {
-    return ResponseEntity.ok(menuService.getMenuList());
-  }
+    @GetMapping
+    public ResponseEntity<List<MenuResponse>> getMenuList() {
+        return ResponseEntity.ok(menuService.getMenuList());
+    }
 
-  @PatchMapping("/{menuId}")
-  public ResponseEntity<AdminMenuChangeResponse> updateMenu(@PathVariable Long menuId,
-      @RequestParam boolean isSoldOut) {
-    return ResponseEntity.ok(adminMenuService.changeSoldOut(menuId,
-        isSoldOut));
-  }
+    @PatchMapping("/{menuId}")
+    public ResponseEntity<AdminMenuChangeResponse> updateMenu(@PathVariable Long menuId,
+                                                              @RequestParam boolean isSoldOut) {
+        return ResponseEntity.ok(adminMenuService.changeSoldOut(menuId,
+                isSoldOut));
+    }
 
-  @DeleteMapping("/{menuId}")
-  public ResponseEntity<Void> deleteMenu(@PathVariable Long menuId){
+    @DeleteMapping("/{menuId}")
+    public ResponseEntity<Void> deleteMenu(@PathVariable Long menuId) {
 
-    adminMenuService.deleteMenu(menuId);
+        adminMenuService.deleteMenu(menuId);
 
-    return ResponseEntity.noContent().build();
-  }
+        return ResponseEntity.noContent().build();
+    }
 }

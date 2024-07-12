@@ -11,22 +11,24 @@ link:index.html[메인 문서]
 === 주문이 현재 진행중인지 확인해준다
 
 ==== Request
+
 include::{snippets}/order/duplicate/success/http-request.adoc[]
 
 ==== Response
+
 include::{snippets}/order/duplicate/success/http-response.adoc[]
 include::{snippets}/order/duplicate/success/response-fields.adoc[]
 
 === 주문이 만약 현재 진행중이아니면 400을 던진다
 
 ==== Request
+
 include::{snippets}/order/duplicate/fail/http-request.adoc[]
 
 ==== Response
 
 include::{snippets}/order/duplicate/fail/http-response.adoc[]
 include::{snippets}/order/duplicate/fail/response-fields.adoc[]
-
 
 === 주문을 저장한다 (토스 PG 결제 이후)
 
@@ -62,7 +64,6 @@ include::{snippets}/order/delete/success/http-request.adoc[]
 
 Path Variable::
 include::{snippets}/order/delete/success/path-parameters.adoc[]
-
 
 === 과거 주문내역을 반환한다
 

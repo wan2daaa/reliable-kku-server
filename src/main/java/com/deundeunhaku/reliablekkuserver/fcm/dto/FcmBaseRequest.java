@@ -1,10 +1,10 @@
 package com.deundeunhaku.reliablekkuserver.fcm.dto;
 
 public record FcmBaseRequest(
-    Long targetUserId,
-    String title,
-    String body,
-    String imageUrl
+        Long targetUserId,
+        String title,
+        String body,
+        String imageUrl
 
 ) {
 

@@ -79,7 +79,7 @@ public class AdminSalesTotalExcelController {
         mainRow.createCell(2).setCellValue("건 단가");
         mainRow.createCell(3).setCellValue("총 환불");
         mainRow.createCell(4).setCellValue("환불 건수");
-        for(int i=0; i<=4; i++){
+        for (int i = 0; i <= 4; i++) {
             mainRow.getCell(i).setCellStyle(blueCellStyle);
         }
         Row mainDataRow = sheet.createRow(rowNo++);
@@ -103,7 +103,7 @@ public class AdminSalesTotalExcelController {
         mainDataRow.createCell(2).setCellValue(totalAvg);
         mainDataRow.createCell(3).setCellValue(refundTotalSales);
         mainDataRow.createCell(4).setCellValue(refundTotalCount);
-        for(int i=0; i<=4; i++){
+        for (int i = 0; i <= 4; i++) {
             mainDataRow.getCell(i).setCellStyle(greyCellStyle);
         }
 
@@ -117,7 +117,7 @@ public class AdminSalesTotalExcelController {
         headerRow.createCell(4).setCellValue("온라인 결제");
         headerRow.createCell(5).setCellValue("오프라인 결제");
 
-        for(int i=0; i<=5; i++){
+        for (int i = 0; i <= 5; i++) {
             headerRow.getCell(i).setCellStyle(blueCellStyle);
         }
 
@@ -134,7 +134,7 @@ public class AdminSalesTotalExcelController {
 
         totalRow.createCell(5).setCellValue(offlineTotalSales);
 
-        for(int i=3; i<=5; i++){
+        for (int i = 3; i <= 5; i++) {
             totalRow.getCell(i).setCellStyle(greyCellStyle);
         }
 
@@ -162,17 +162,17 @@ public class AdminSalesTotalExcelController {
                 row.createCell(4).setCellValue(order.getOrderPrice());
                 row.createCell(5).setCellValue("-");
             }
-            for(int i=0; i<=5; i++){
+            for (int i = 0; i <= 5; i++) {
                 row.getCell(i).setCellStyle(bodyCellStyle);
             }
         }
 
 
-            for(int k = 0 ; k < rowNo ; k++) {
-                ((SXSSFSheet) sheet).trackAllColumnsForAutoSizing();
-                sheet.autoSizeColumn(k);
-                sheet.setColumnWidth(k, (sheet.getColumnWidth(k))+512);
-            }
+        for (int k = 0; k < rowNo; k++) {
+            ((SXSSFSheet) sheet).trackAllColumnsForAutoSizing();
+            sheet.autoSizeColumn(k);
+            sheet.setColumnWidth(k, (sheet.getColumnWidth(k)) + 512);
+        }
 
         File tmpFile = File.createTempFile("TMP~", ".xlsx");
         try (OutputStream fos = new FileOutputStream(tmpFile);) {
@@ -188,13 +188,13 @@ public class AdminSalesTotalExcelController {
             }
         };
 
-        String fileName = URLEncoder.encode("관리자매출현황" + startDate +"~"+ endDate + ".xlsx",
-            StandardCharsets.UTF_8);
+        String fileName = URLEncoder.encode("관리자매출현황" + startDate + "~" + endDate + ".xlsx",
+                StandardCharsets.UTF_8);
 
         return ResponseEntity.ok()
                 .contentLength(tmpFile.length())
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .header("Content-Disposition", "attachment;filename="+fileName) //
+                .header("Content-Disposition", "attachment;filename=" + fileName) //
                 .body(new InputStreamResource(res));
 
     }

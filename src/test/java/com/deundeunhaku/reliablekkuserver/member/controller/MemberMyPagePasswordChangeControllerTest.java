@@ -8,7 +8,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -24,7 +25,7 @@ class MemberMyPagePasswordChangeControllerTest extends BaseControllerTest {
     MemberService memberService;
 
     @Test
-    void 현재비밀번호와_작성한_비밀번호가_같은경우_true를_리턴한다() throws Exception{
+    void 현재비밀번호와_작성한_비밀번호가_같은경우_true를_리턴한다() throws Exception {
         //given
         final String password = "password";
 
@@ -52,7 +53,7 @@ class MemberMyPagePasswordChangeControllerTest extends BaseControllerTest {
     @Test
     void 사용자의_비밀번호를_변경한다() throws Exception {
         //given
-        final MemberPasswordChangeRequest request = MemberPasswordChangeRequest.of( "password");
+        final MemberPasswordChangeRequest request = MemberPasswordChangeRequest.of("password");
 
         when(memberService.changeMemberPassword(any(), eq(request)))
                 .thenReturn(true);

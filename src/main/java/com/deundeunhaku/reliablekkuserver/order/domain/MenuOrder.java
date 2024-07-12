@@ -17,33 +17,33 @@ import org.hibernate.annotations.DynamicInsert;
 @IdClass(MenuOrderId.class)
 public class MenuOrder extends BaseEntity {
 
-  @Id
-  @NotNull
-  @ManyToOne
-  @JoinColumn(name = "menu_id")
-  private Menu menu;
+    @Id
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    private Menu menu;
 
-  @Id
-  @NotNull
-  @ManyToOne
-  @JoinColumn(name = "orders_id")
-  private Order order;
+    @Id
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "orders_id")
+    private Order order;
 
-  @ColumnDefault("0")
-  private Integer count;
+    @ColumnDefault("0")
+    private Integer count;
 
 
-  public MenuOrder(Menu menu, Order order, Integer count) {
-    this.menu = menu;
-    this.order = order;
-    this.count = count;
-  }
+    public MenuOrder(Menu menu, Order order, Integer count) {
+        this.menu = menu;
+        this.order = order;
+        this.count = count;
+    }
 
-  public void updateCount(Integer count) {
-    this.count = count;
-  }
+    public void updateCount(Integer count) {
+        this.count = count;
+    }
 
-  public static MenuOrder createMenuOrder(Menu menu, Order order, Integer count) {
-    return new MenuOrder(menu, order, count);
-  }
+    public static MenuOrder createMenuOrder(Menu menu, Order order, Integer count) {
+        return new MenuOrder(menu, order, count);
+    }
 }

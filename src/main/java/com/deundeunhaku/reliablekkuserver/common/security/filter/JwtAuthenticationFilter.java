@@ -29,58 +29,58 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	private final JwtTokenUtils jwtTokenUtils;
-	private final MemberDetailsService memberDetailsService;
+    private final JwtTokenUtils jwtTokenUtils;
+    private final MemberDetailsService memberDetailsService;
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response,
-									@NotNull FilterChain filterChain) throws ServletException, IOException {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response,
+                                    @NotNull FilterChain filterChain) throws ServletException, IOException {
 
-		if (request.getHeader(AUTHORIZATION) == null || request.getHeader(AUTHORIZATION).isEmpty()) {
-			filterChain.doFilter(request, response);
-			return;
-		}
+        if (request.getHeader(AUTHORIZATION) == null || request.getHeader(AUTHORIZATION).isEmpty()) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
-		String accessToken = parseBearerToken(request);
+        String accessToken = parseBearerToken(request);
 
-		String phoneNumber = jwtTokenUtils.getPhoneNumber(accessToken);
+        String phoneNumber = jwtTokenUtils.getPhoneNumber(accessToken);
 
-		Boolean isTokenValid = jwtTokenUtils.validate(accessToken, phoneNumber);
+        Boolean isTokenValid = jwtTokenUtils.validate(accessToken, phoneNumber);
 
-		if (!isTokenValid) {
-			throw new NotAuthorizedException("유효하지 않은 토큰입니다.");
-		}
+        if (!isTokenValid) {
+            throw new NotAuthorizedException("유효하지 않은 토큰입니다.");
+        }
 
-		Boolean isTokenExpired = jwtTokenUtils.isTokenExpired(accessToken);
-		if (isTokenExpired) {
-			throw new NotAuthorizedException("만료된 토큰입니다.");
-		}
+        Boolean isTokenExpired = jwtTokenUtils.isTokenExpired(accessToken);
+        if (isTokenExpired) {
+            throw new NotAuthorizedException("만료된 토큰입니다.");
+        }
 
-		UserDetails member = memberDetailsService.loadUserByUsername(phoneNumber);
+        UserDetails member = memberDetailsService.loadUserByUsername(phoneNumber);
 
-		AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-				member,
-				null,
-				member.getAuthorities()
-		);
+        AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                member,
+                null,
+                member.getAuthorities()
+        );
 
-		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-		SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-		securityContext.setAuthentication(authentication);
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+        securityContext.setAuthentication(authentication);
 
-		SecurityContextHolder.setContext(securityContext);
+        SecurityContextHolder.setContext(securityContext);
 
-		filterChain.doFilter(request, response);
-	}
+        filterChain.doFilter(request, response);
+    }
 
-	private String parseBearerToken(HttpServletRequest request) {
+    private String parseBearerToken(HttpServletRequest request) {
 
-		String accessToken = request.getHeader(AUTHORIZATION);
+        String accessToken = request.getHeader(AUTHORIZATION);
 
-		if (StringUtils.hasText(accessToken) && accessToken.startsWith("Bearer ")) {
-			return accessToken.substring(7);
-		} else {
-			throw new NotAuthorizedException("잘못된 토큰입니다.");
-		}
-	}
+        if (StringUtils.hasText(accessToken) && accessToken.startsWith("Bearer ")) {
+            return accessToken.substring(7);
+        } else {
+            throw new NotAuthorizedException("잘못된 토큰입니다.");
+        }
+    }
 }

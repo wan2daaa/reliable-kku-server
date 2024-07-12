@@ -5,8 +5,6 @@ import com.deundeunhaku.reliablekkuserver.menu.domain.Menu;
 import com.deundeunhaku.reliablekkuserver.menu.dto.CreateMenuRequest;
 import com.deundeunhaku.reliablekkuserver.menu.dto.CreateMenuResponse;
 import com.deundeunhaku.reliablekkuserver.menu.repository.AdminMenuRepository;
-import com.deundeunhaku.reliablekkuserver.s3.dto.S3Response;
-import com.deundeunhaku.reliablekkuserver.s3.service.S3UploadService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,10 +21,11 @@ class AdminCreateMenuServiceTest extends BaseServiceTest {
     AdminCreateMenuService adminCreateMenuService;
     @Mock
     AdminMenuRepository adminMenuRepository;
-//    @Mock
+
+    //    @Mock
 //    S3UploadService uploadService;
     @Test
-    void 메뉴를_만들고_메뉴_이미지를_저장한다(){
+    void 메뉴를_만들고_메뉴_이미지를_저장한다() {
         //given
         MultipartFile multipartFile = new MockMultipartFile("file", "fileOriginName", "image/jpeg", "file".getBytes());
 

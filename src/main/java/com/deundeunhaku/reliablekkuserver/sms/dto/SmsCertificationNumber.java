@@ -4,7 +4,7 @@ public record SmsCertificationNumber(
         int certificationNumber
 ) {
 
-        public static SmsCertificationNumber of(int certificationNumber) {
-            return new SmsCertificationNumber(certificationNumber);
-        }
+    public static SmsCertificationNumber of(int certificationNumber) {
+        return new SmsCertificationNumber(certificationNumber);
+    }
 }

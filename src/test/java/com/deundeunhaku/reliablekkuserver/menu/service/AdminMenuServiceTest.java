@@ -7,7 +7,6 @@ import com.deundeunhaku.reliablekkuserver.s3.service.S3UploadService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import java.util.Optional;
 
@@ -23,6 +22,7 @@ class AdminMenuServiceTest extends BaseServiceTest {
 
     @Mock
     S3UploadService s3UploadService;
+
     @Test
     void 메뉴_삭제에_성공한다() {
         //given

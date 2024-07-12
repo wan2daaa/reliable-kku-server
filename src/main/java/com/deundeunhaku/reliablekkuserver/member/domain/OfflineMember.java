@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class OfflineMember extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @NotNull

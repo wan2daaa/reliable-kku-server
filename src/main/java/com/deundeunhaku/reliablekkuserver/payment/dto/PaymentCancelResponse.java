@@ -1,40 +1,41 @@
 package com.deundeunhaku.reliablekkuserver.payment.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
 public class PaymentCancelResponse {
 
-  private String mId;// 가맹점 Id -> tosspayments
-  private String lastTransactionKey;
-  private String paymentKey;
-  private String orderId;
-  private String orderName;
-  private Integer taxExemptionAmount;
-  private String status;
-  private String requestedAt;
-  private String approvedAt;
-  private Boolean useEscrow;
-  private Boolean cultureExpense;
-  private PaymentCardResponse card;
-  private List<PaymentCancelDataResponse> cancels;
-  private String type;
-  private EasyPay easyPay;
-  private String country;
-  private Boolean isPartialCancelable;
-  private Receipt receipt;
-  private Checkout checkout;
-  private String currency;
-  private Integer totalAmount;
-  private Integer balanceAmount;
-  private Integer suppliedAmount;
-  private Integer vat;
-  private Integer taxFreeAmount;
-  private String method;
-  private String version;
+    private String mId;// 가맹점 Id -> tosspayments
+    private String lastTransactionKey;
+    private String paymentKey;
+    private String orderId;
+    private String orderName;
+    private Integer taxExemptionAmount;
+    private String status;
+    private String requestedAt;
+    private String approvedAt;
+    private Boolean useEscrow;
+    private Boolean cultureExpense;
+    private PaymentCardResponse card;
+    private List<PaymentCancelDataResponse> cancels;
+    private String type;
+    private EasyPay easyPay;
+    private String country;
+    private Boolean isPartialCancelable;
+    private Receipt receipt;
+    private Checkout checkout;
+    private String currency;
+    private Integer totalAmount;
+    private Integer balanceAmount;
+    private Integer suppliedAmount;
+    private Integer vat;
+    private Integer taxFreeAmount;
+    private String method;
+    private String version;
 
 //  {
 //  "mId": "tvivarepublica",

@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum STORE_ID {
 
-  DEUNDEUN_HAKU(1L);
+    DEUNDEUN_HAKU(1L);
 
-  private final Long storeId;
+    private final Long storeId;
 
 }

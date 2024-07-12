@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/fcm")
 public class FcmController {
 
-  private final MemberService memberService;
+    private final MemberService memberService;
 
-  @PostMapping
-  public ResponseEntity<Void> updateFcmToken(@AuthenticationPrincipal Member member,
-      @RequestBody FcmTokenRequest request) {
-    memberService.updateFcmToken(member, request.token());
+    @PostMapping
+    public ResponseEntity<Void> updateFcmToken(@AuthenticationPrincipal(expression = "@jpaEntityManager.merge(#this)") Member member,
+                                               @RequestBody FcmTokenRequest request) {
+        memberService.updateFcmToken(member, request.token());
 
-    return ResponseEntity.ok().build();
-  }
+        return ResponseEntity.ok().build();
+    }
 
 }

@@ -6,33 +6,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 public record PaymentSuccess(
-    String mid,
-    String lastTransactionKey,
-    String paymentKey,
-    String orderId,
-    String orderName,
-    Integer taxExemptionAmount,
-    String status,
-    String requestedAt,
-    String approvedAt,
-    Boolean useEscrow,
-    Boolean cultureExpense,
-    PaymentCardResponse card,
-    String secret,
-    PayType type,
-    EasyPay easyPay,
-    String country,
-    Boolean isPartialCancelable,
-    Receipt receipt,
-    Checkout checkout,
-    String currency,
-    Integer totalAmount,
-    Integer balanceAmount,
-    Integer suppliedAmount,
-    Integer vat,
-    Integer taxFreeAmount,
-    String method,
-    String version
+        String mid,
+        String lastTransactionKey,
+        String paymentKey,
+        String orderId,
+        String orderName,
+        Integer taxExemptionAmount,
+        String status,
+        String requestedAt,
+        String approvedAt,
+        Boolean useEscrow,
+        Boolean cultureExpense,
+        PaymentCardResponse card,
+        String secret,
+        PayType type,
+        EasyPay easyPay,
+        String country,
+        Boolean isPartialCancelable,
+        Receipt receipt,
+        Checkout checkout,
+        String currency,
+        Integer totalAmount,
+        Integer balanceAmount,
+        Integer suppliedAmount,
+        Integer vat,
+        Integer taxFreeAmount,
+        String method,
+        String version
 ) {
 
 }
@@ -78,7 +78,7 @@ public record PaymentSuccess(
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-class PaymentCardResponse{
+class PaymentCardResponse {
     private String amount;
     private String issuerCode;
     private String acquirerCode;
@@ -94,21 +94,21 @@ class PaymentCardResponse{
 }
 
 record Receipt(
-    String url
+        String url
 ) {
 
 }
 
 record Checkout(
-    String url
+        String url
 ) {
 
 }
 
 record EasyPay(
-    String provider,
-    Integer amount,
-    Integer discountAmount
+        String provider,
+        Integer amount,
+        Integer discountAmount
 ) {
 
 }

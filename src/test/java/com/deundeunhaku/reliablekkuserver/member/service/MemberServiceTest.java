@@ -1,9 +1,5 @@
 package com.deundeunhaku.reliablekkuserver.member.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
-
 import com.deundeunhaku.reliablekkuserver.BaseServiceTest;
 import com.deundeunhaku.reliablekkuserver.common.exception.LoginFailedException;
 import com.deundeunhaku.reliablekkuserver.member.domain.Member;
@@ -11,8 +7,6 @@ import com.deundeunhaku.reliablekkuserver.member.dto.LoginRequest;
 import com.deundeunhaku.reliablekkuserver.member.dto.MemberMyPageResponse;
 import com.deundeunhaku.reliablekkuserver.member.dto.MemberPasswordChangeRequest;
 import com.deundeunhaku.reliablekkuserver.member.repository.MemberRepository;
-import java.util.Optional;
-
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,201 +17,207 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
+
 class MemberServiceTest extends BaseServiceTest {
 
-  @InjectMocks
-  private MemberService memberService;
+    @InjectMocks
+    private MemberService memberService;
 
-  @Mock
-  private MemberRepository memberRepository;
+    @Mock
+    private MemberRepository memberRepository;
 
-  @Mock
-  private PasswordEncoder passwordEncoder;
+    @Mock
+    private PasswordEncoder passwordEncoder;
 
-  @Mock
-  private AuthenticationManager authenticationManager;
+    @Mock
+    private AuthenticationManager authenticationManager;
 
-  @Mock
-  private EntityManager em;
+    @Mock
+    private EntityManager em;
 
-  @Test
-  void 회원이_존재하는지_검증한다() throws Exception {
-    //given
-    Long memberId = 1L;
-    String phoneNumber = "01012341234";
-    String password = "password";
-    LoginRequest request = LoginRequest.of(
-        phoneNumber,
-        password
-    );
+    @Test
+    void 회원이_존재하는지_검증한다() throws Exception {
+        //given
+        Long memberId = 1L;
+        String phoneNumber = "01012341234";
+        String password = "password";
+        LoginRequest request = LoginRequest.of(
+                phoneNumber,
+                password
+        );
 
-    Member member = Member.builder()
-        .id(memberId)
-        .realName("realName")
-        .phoneNumber(phoneNumber)
-        .password(password)
-        .build();
+        Member member = Member.builder()
+                .id(memberId)
+                .realName("realName")
+                .phoneNumber(phoneNumber)
+                .password(password)
+                .build();
 
-    when(memberRepository.findByPhoneNumber(phoneNumber))
-        .thenReturn(Optional.of(member));
+        when(memberRepository.findByPhoneNumber(phoneNumber))
+                .thenReturn(Optional.of(member));
 
-    when(passwordEncoder.matches(request.password(), password))
-        .thenReturn(true);
+        when(passwordEncoder.matches(request.password(), password))
+                .thenReturn(true);
 
-    //when
-    memberService.login(request.phoneNumber(), request.password());
+        //when
+        memberService.login(request.phoneNumber(), request.password());
 
-    //then
-  }
+        //then
+    }
 
-  @Test
-  void 회원이_존재하지않으면_에러를던진다() throws Exception {
-    //given
-    Long memberId = 1L;
-    String phoneNumber = "01012341234";
-    String password = "password";
-    LoginRequest request = LoginRequest.of(
-        phoneNumber,
-        password
-    );
+    @Test
+    void 회원이_존재하지않으면_에러를던진다() throws Exception {
+        //given
+        Long memberId = 1L;
+        String phoneNumber = "01012341234";
+        String password = "password";
+        LoginRequest request = LoginRequest.of(
+                phoneNumber,
+                password
+        );
 
-    Member member = Member.builder()
-        .id(memberId)
-        .realName("realName")
-        .phoneNumber(phoneNumber)
-        .password(password)
-        .build();
+        Member member = Member.builder()
+                .id(memberId)
+                .realName("realName")
+                .phoneNumber(phoneNumber)
+                .password(password)
+                .build();
 
-    when(memberRepository.findByPhoneNumber(phoneNumber))
-        .thenReturn(Optional.empty());
+        when(memberRepository.findByPhoneNumber(phoneNumber))
+                .thenReturn(Optional.empty());
 
-    //when
-    //then
-    assertThrows(LoginFailedException.class,
-        () -> memberService.login(request.phoneNumber(), request.password()));
-  }
+        //when
+        //then
+        assertThrows(LoginFailedException.class,
+                () -> memberService.login(request.phoneNumber(), request.password()));
+    }
 
-  @Test
-  void 비밀번호가_일치하지않을때_에러를_던진다() throws Exception {
-    //given
-    Long memberId = 1L;
-    String phoneNumber = "01012341234";
-    String password = "password";
-    LoginRequest request = LoginRequest.of(
-        phoneNumber,
-        password
-    );
+    @Test
+    void 비밀번호가_일치하지않을때_에러를_던진다() throws Exception {
+        //given
+        Long memberId = 1L;
+        String phoneNumber = "01012341234";
+        String password = "password";
+        LoginRequest request = LoginRequest.of(
+                phoneNumber,
+                password
+        );
 
-    Member member = Member.builder()
-        .id(memberId)
-        .realName("realName")
-        .phoneNumber(phoneNumber)
-        .password(password)
-        .build();
+        Member member = Member.builder()
+                .id(memberId)
+                .realName("realName")
+                .phoneNumber(phoneNumber)
+                .password(password)
+                .build();
 
-    when(memberRepository.findByPhoneNumber(phoneNumber))
-        .thenReturn(Optional.of(member));
+        when(memberRepository.findByPhoneNumber(phoneNumber))
+                .thenReturn(Optional.of(member));
 
-    when(passwordEncoder.matches(request.password(), password))
-        .thenReturn(false);
+        when(passwordEncoder.matches(request.password(), password))
+                .thenReturn(false);
 
-    //when
-    //then
-    assertThrows(LoginFailedException.class,
-        () -> memberService.login(request.phoneNumber(), request.password()));
-  }
+        //when
+        //then
+        assertThrows(LoginFailedException.class,
+                () -> memberService.login(request.phoneNumber(), request.password()));
+    }
 
-  @Test
-  void 현재_비밀번호와_입력한_현재_비밀번호가_동일하면_true를_리턴한다(){
-    //given
-    Member member = Member.builder().password("mockedPassword").build();
-    String password = "mockedPassword";
+    @Test
+    void 현재_비밀번호와_입력한_현재_비밀번호가_동일하면_true를_리턴한다() {
+        //given
+        Member member = Member.builder().password("mockedPassword").build();
+        String password = "mockedPassword";
 
-    when(passwordEncoder.matches(password, member.getPassword())).thenReturn(true);
-    //when
-    boolean result = memberService.isMemberPasswordMatch(password, member);
-    //then
-    assertThat(result).isTrue();
-  }
+        when(passwordEncoder.matches(password, member.getPassword())).thenReturn(true);
+        //when
+        boolean result = memberService.isMemberPasswordMatch(password, member);
+        //then
+        assertThat(result).isTrue();
+    }
 
-  @Test
-  void 현재_비밀번호와_입력한_현재_비밀번호가_다르면_false를_리턴한다(){
-    //given
-    Member member = Member.builder().password("mockedPassword").build();
-    String password = "mockedPassword1234";
+    @Test
+    void 현재_비밀번호와_입력한_현재_비밀번호가_다르면_false를_리턴한다() {
+        //given
+        Member member = Member.builder().password("mockedPassword").build();
+        String password = "mockedPassword1234";
 
-    when(passwordEncoder.matches(password, member.getPassword())).thenReturn(false);
-    //when
-    boolean result = memberService.isMemberPasswordMatch(password, member);
-    //then
-    assertThat(result).isFalse();
-  }
+        when(passwordEncoder.matches(password, member.getPassword())).thenReturn(false);
+        //when
+        boolean result = memberService.isMemberPasswordMatch(password, member);
+        //then
+        assertThat(result).isFalse();
+    }
 
-  @Test
-  void 변경할_비밀번호를_받으면_비밀번호를_변경한다() {
-    //given
-    String initialPassword = "password";
-    String newPassword = "changePassword";
+    @Test
+    void 변경할_비밀번호를_받으면_비밀번호를_변경한다() {
+        //given
+        String initialPassword = "password";
+        String newPassword = "changePassword";
 
-    Member member = Member.builder().id(1L).password(initialPassword).build();
-    MemberPasswordChangeRequest request = MemberPasswordChangeRequest.of(newPassword);
+        Member member = Member.builder().id(1L).password(initialPassword).build();
+        MemberPasswordChangeRequest request = MemberPasswordChangeRequest.of(newPassword);
 
-    when(memberRepository.findById(member.getId()))
-            .thenReturn(Optional.of(member));
-    //when
-    boolean isChanged = memberService.changeMemberPassword(member, request);
-    //then
-    assertThat(isChanged).isTrue();
-    assertThat(passwordEncoder.matches(newPassword, member.getPassword()));
-  }
+        when(memberRepository.findById(member.getId()))
+                .thenReturn(Optional.of(member));
+        //when
+        boolean isChanged = memberService.changeMemberPassword(member, request);
+        //then
+        assertThat(isChanged).isTrue();
+        assertThat(passwordEncoder.matches(newPassword, member.getPassword()));
+    }
 
-  @Test
-  void 멤버의_탈퇴여부를_확인하고_false면_isWithdraw를_true로_반환한다(){
-    //given
-    Member member = Member.builder().id(1L).isWithdraw(false).build();
-    when(memberRepository.findById(member.getId()))
-            .thenReturn(Optional.of(member));
-    //when
-    boolean isWithdraw = memberService.checkMemberIsWithdraw(member);
-    memberService.setMemberWithdraw(member);
+    @Test
+    void 멤버의_탈퇴여부를_확인하고_false면_isWithdraw를_true로_반환한다() {
+        //given
+        Member member = Member.builder().id(1L).isWithdraw(false).build();
+        when(memberRepository.findById(member.getId()))
+                .thenReturn(Optional.of(member));
+        //when
+        boolean isWithdraw = memberService.checkMemberIsWithdraw(member);
+        memberService.setMemberWithdraw(member);
 
-    //then
-    assertThat(isWithdraw).isFalse();
-    assertThat(member.isWithdraw()).isTrue();
-  }
+        //then
+        assertThat(isWithdraw).isFalse();
+        assertThat(member.isWithdraw()).isTrue();
+    }
 
-  @Test
-  void 마이페이지의_정보를_가져오는지_검증한다(){
-    //given
-    Member member = Member.builder().realName("kim").level(5).build();
-    //when
-    MemberMyPageResponse response = memberService.getMyPageInfo(member);
-    //then
-    assertThat(response.realName()).isEqualTo(member.getRealName());
-    assertThat(response.level()).isEqualTo(member.getLevel());
-  }
+    @Test
+    void 마이페이지의_정보를_가져오는지_검증한다() {
+        //given
+        Member member = Member.builder().realName("kim").level(5).build();
+        //when
+        MemberMyPageResponse response = memberService.getMyPageInfo(member);
+        //then
+        assertThat(response.realName()).isEqualTo(member.getRealName());
+        assertThat(response.level()).isEqualTo(member.getLevel());
+    }
 }
 
 @SpringBootTest
 class SpringBootExample {
 
-  @Autowired
-  PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-  @Autowired
-  MemberService memberService;
+    @Autowired
+    MemberService memberService;
 
-  @Test
-  void test() throws Exception {
-    String password = "password";
-    String encodedPassword = passwordEncoder.encode(password);
+    @Test
+    void test() throws Exception {
+        String password = "password";
+        String encodedPassword = passwordEncoder.encode(password);
 
-    boolean matches = passwordEncoder.matches(password, encodedPassword);
+        boolean matches = passwordEncoder.matches(password, encodedPassword);
 
-    boolean memberPasswordMatch = memberService.isMemberPasswordMatch(password,
-        Member.builder().password(encodedPassword).build());
+        boolean memberPasswordMatch = memberService.isMemberPasswordMatch(password,
+                Member.builder().password(encodedPassword).build());
 
-    Assertions.assertThat(memberPasswordMatch).isTrue();
-  }
+        Assertions.assertThat(memberPasswordMatch).isTrue();
+    }
 
 }

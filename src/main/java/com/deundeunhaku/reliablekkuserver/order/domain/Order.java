@@ -26,101 +26,101 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "orders",
-    indexes = {
-        @Index(name = "order_orderStatus_index", columnList = "orderStatus"),
-        @Index(name = "order_createdDate_index", columnList = "createdDate")
-    })
+        indexes = {
+                @Index(name = "order_orderStatus_index", columnList = "orderStatus"),
+                @Index(name = "order_createdDate_index", columnList = "createdDate")
+        })
 public class Order extends BaseEntity implements Serializable {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @NotNull
-  private Long todayOrderCount;
+    @NotNull
+    private Long todayOrderCount;
 
-  @CreatedDate
-  private LocalDateTime orderDatetime;
+    @CreatedDate
+    private LocalDateTime orderDatetime;
 
-  @NotNull
-  @ColumnDefault("0")
-  private Integer orderPrice;
+    @NotNull
+    @ColumnDefault("0")
+    private Integer orderPrice;
 
-  @NotNull
-  private LocalDateTime expectedWaitDatetime;
+    @NotNull
+    private LocalDateTime expectedWaitDatetime;
 
-  @NotNull
-  private Boolean isOfflineOrder;
+    @NotNull
+    private Boolean isOfflineOrder;
 
-  @Enumerated(EnumType.STRING)
-  private OrderStatus orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
-  private LocalDate createdDate;
-
-
-  @ManyToOne
-  @JoinColumn(name = "member_id")
-  private Member member;
-
-  @OneToOne
-  @JoinColumn(name = "offlineMember_id")
-  private OfflineMember offlineMember;
+    private LocalDate createdDate;
 
 
-  public void addMinutesToExpectedWaitDateTime(Integer addMinutes) {
-    this.expectedWaitDatetime = LocalDateTime.now().plusMinutes(addMinutes);
-  }
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-  public void updateOrderStatus(OrderStatus orderStatus) {
-    this.orderStatus = orderStatus;
-  }
-
-  @Builder
-  public Order(Long id, Long todayOrderCount, LocalDateTime orderDatetime, Integer orderPrice,
-      LocalDateTime expectedWaitDatetime, Boolean isOfflineOrder, OrderStatus orderStatus,
-      LocalDate createdDate, Member member, OfflineMember offlineMember, LocalDateTime createdAt) {
-    this.id = id;
-    this.todayOrderCount = todayOrderCount;
-    this.orderDatetime = orderDatetime;
-    this.orderPrice = orderPrice;
-    this.expectedWaitDatetime = expectedWaitDatetime;
-    this.isOfflineOrder = isOfflineOrder;
-    this.orderStatus = orderStatus;
-    this.createdDate = createdDate;
-    this.member = member;
-    this.offlineMember = offlineMember;
-    super.createdAt = createdAt;
-  }
+    @OneToOne
+    @JoinColumn(name = "offlineMember_id")
+    private OfflineMember offlineMember;
 
 
-  public static Order createOnlineOrder(Long todayOrderCount, OrderRegisterRequest request,
-      Member member) {
-    return Order
-        .builder()
-        .todayOrderCount(todayOrderCount)
-        .orderDatetime(LocalDateTime.now())
-        .orderPrice(request.orderPrice())
-        .expectedWaitDatetime(LocalDateTime.now())
-        .isOfflineOrder(false)
-        .orderStatus(OrderStatus.WAIT)
-        .member(member)
-        .createdDate(LocalDate.now())
-        .build();
-  }
+    public void addMinutesToExpectedWaitDateTime(Integer addMinutes) {
+        this.expectedWaitDatetime = LocalDateTime.now().plusMinutes(addMinutes);
+    }
+
+    public void updateOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    @Builder
+    public Order(Long id, Long todayOrderCount, LocalDateTime orderDatetime, Integer orderPrice,
+                 LocalDateTime expectedWaitDatetime, Boolean isOfflineOrder, OrderStatus orderStatus,
+                 LocalDate createdDate, Member member, OfflineMember offlineMember, LocalDateTime createdAt) {
+        this.id = id;
+        this.todayOrderCount = todayOrderCount;
+        this.orderDatetime = orderDatetime;
+        this.orderPrice = orderPrice;
+        this.expectedWaitDatetime = expectedWaitDatetime;
+        this.isOfflineOrder = isOfflineOrder;
+        this.orderStatus = orderStatus;
+        this.createdDate = createdDate;
+        this.member = member;
+        this.offlineMember = offlineMember;
+        super.createdAt = createdAt;
+    }
 
 
-  public static Order createOfflineOrder(Long todayOrderCount, OfflineOrderRequest request,
-      OfflineMember member) {
+    public static Order createOnlineOrder(Long todayOrderCount, OrderRegisterRequest request,
+                                          Member member) {
+        return Order
+                .builder()
+                .todayOrderCount(todayOrderCount)
+                .orderDatetime(LocalDateTime.now())
+                .orderPrice(request.orderPrice())
+                .expectedWaitDatetime(LocalDateTime.now())
+                .isOfflineOrder(false)
+                .orderStatus(OrderStatus.WAIT)
+                .member(member)
+                .createdDate(LocalDate.now())
+                .build();
+    }
 
-    return Order.builder()
-        .todayOrderCount(todayOrderCount)
-        .orderDatetime(LocalDateTime.now())
-        .expectedWaitDatetime(LocalDateTime.now())
-        .orderPrice(request.totalPrice())
-        .isOfflineOrder(true)
-        .offlineMember(member)
-        .orderStatus(OrderStatus.WAIT)
-        .createdDate(LocalDate.now())
-        .build();
-  }
+
+    public static Order createOfflineOrder(Long todayOrderCount, OfflineOrderRequest request,
+                                           OfflineMember member) {
+
+        return Order.builder()
+                .todayOrderCount(todayOrderCount)
+                .orderDatetime(LocalDateTime.now())
+                .expectedWaitDatetime(LocalDateTime.now())
+                .orderPrice(request.totalPrice())
+                .isOfflineOrder(true)
+                .offlineMember(member)
+                .orderStatus(OrderStatus.WAIT)
+                .createdDate(LocalDate.now())
+                .build();
+    }
 }

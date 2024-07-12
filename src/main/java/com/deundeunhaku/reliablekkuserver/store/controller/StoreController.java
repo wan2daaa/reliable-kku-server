@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/stores")
 public class StoreController {
 
-  private final StoreService storeService;
+    private final StoreService storeService;
 
-  @GetMapping("/open-closed")
-  public ResponseEntity<Store> isOpenedOrClosed() {
-    Store store = storeService.getStoreOpenOrClosed(STORE_ID.DEUNDEUN_HAKU);
-    return ResponseEntity.ok(store);
-  }
+    @GetMapping("/open-closed")
+    public ResponseEntity<Store> isOpenedOrClosed() {
+        Store store = storeService.getStoreOpenOrClosed(STORE_ID.DEUNDEUN_HAKU);
+        return ResponseEntity.ok(store);
+    }
 
 
 }

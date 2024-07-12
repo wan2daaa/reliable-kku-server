@@ -13,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(indexes = {
-        @Index(name = "idx_payment_paymentKey", columnList = "paymentKey" )
+        @Index(name = "idx_payment_paymentKey", columnList = "paymentKey")
 })
 public class Payment extends BaseEntity {
     @Id

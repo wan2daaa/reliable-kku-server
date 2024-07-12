@@ -8,7 +8,6 @@
 
 link:index.html[메인 문서]
 
-
 === 멤버의 리스트를 반환한다
 
 ==== Request

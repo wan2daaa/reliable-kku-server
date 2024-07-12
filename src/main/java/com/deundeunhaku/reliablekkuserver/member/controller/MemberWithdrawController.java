@@ -17,25 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/my-pages")
 public class MemberWithdrawController {
 
-  private final MemberService memberService;
+    private final MemberService memberService;
 
-  @PatchMapping("/withdraw")
-  public ResponseEntity<String> withdraw(HttpServletResponse response,
-      @AuthenticationPrincipal Member member,
-      @CookieValue(name = "refreshToken", required = false) Cookie refreshTokenCookie) {
+    @PatchMapping("/withdraw")
+    public ResponseEntity<String> withdraw(HttpServletResponse response,
+                                           @AuthenticationPrincipal Member member,
+                                           @CookieValue(name = "refreshToken", required = false) Cookie refreshTokenCookie) {
 
-    boolean isMemberWithdraw = memberService.checkMemberIsWithdraw(member);
+        boolean isMemberWithdraw = memberService.checkMemberIsWithdraw(member);
 
-    if (isMemberWithdraw) {
-      return ResponseEntity.badRequest().body("이미 탈퇴한 회원이거나 회원을 찾을 수 없습니다.");
+        if (isMemberWithdraw) {
+            return ResponseEntity.badRequest().body("이미 탈퇴한 회원이거나 회원을 찾을 수 없습니다.");
+        }
+        memberService.setMemberWithdraw(member);
+        setTokenExpired(response, refreshTokenCookie);
+        return ResponseEntity.ok("회원 탈퇴가 완료되었습니다.");
     }
-    memberService.setMemberWithdraw(member);
-    setTokenExpired(response, refreshTokenCookie);
-    return ResponseEntity.ok("회원 탈퇴가 완료되었습니다.");
-  }
 
-  private static void setTokenExpired(HttpServletResponse response, Cookie refreshTokenCookie) {
-    refreshTokenCookie.setMaxAge(0);
-    response.addCookie(refreshTokenCookie);
-  }
+    private static void setTokenExpired(HttpServletResponse response, Cookie refreshTokenCookie) {
+        refreshTokenCookie.setMaxAge(0);
+        response.addCookie(refreshTokenCookie);
+    }
 }

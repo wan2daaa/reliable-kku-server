@@ -40,13 +40,13 @@ class MemberLogoutControllerTest extends BaseControllerTest {
                 ));
     }
 
-        @Test
-        void refreshToken과_accessToken이_없는상태에서_로그아웃시_에러를_반환한다() throws Exception {
+    @Test
+    void refreshToken과_accessToken이_없는상태에서_로그아웃시_에러를_반환한다() throws Exception {
         // Given
         String logoutUrl = API + "/my-pages/logout";
         // When
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get(logoutUrl)
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print());
         // Then
         resultActions

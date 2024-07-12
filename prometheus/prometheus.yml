@@ -1,5 +1,5 @@
 global:
-  scrape_interval:     5s # By default, scrape targets every 15 seconds.
+  scrape_interval: 5s # By default, scrape targets every 15 seconds.
 
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
@@ -11,8 +11,8 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 3s
     static_configs:
-      - targets: ['app:8080']
+      - targets: [ 'app:8080' ]
   - job_name: 'mysqld-exporter'
     scrape_interval: 3s
     static_configs:
-        - targets: ['mysql_exporter:9104']
+      - targets: [ 'mysql_exporter:9104' ]

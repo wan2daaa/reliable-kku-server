@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MemberMyPageController {
 
     private final MemberService memberService;
+
     @GetMapping("/member")
-    public ResponseEntity<MemberMyPageResponse> getMemberInfo(@AuthenticationPrincipal Member member){
+    public ResponseEntity<MemberMyPageResponse> getMemberInfo(@AuthenticationPrincipal Member member) {
 
         MemberMyPageResponse response = memberService.getMyPageInfo(member);
         return ResponseEntity.ok(response);

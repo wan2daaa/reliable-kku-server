@@ -21,7 +21,6 @@ include::{snippets}/order/sse/connect/success/query-parameters.adoc[]
 
 include::{snippets}/order/sse/connect/success/http-response.adoc[]
 
-
 -----
 
 status 라는 이름으로 <- addEvent~~에 담을 값

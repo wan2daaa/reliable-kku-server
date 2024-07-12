@@ -21,27 +21,27 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 public class CertificationNumber extends BaseEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  private String phoneNumber;
+    private String phoneNumber;
 
-  private Integer certificationNumber;
+    private Integer certificationNumber;
 
-  @ColumnDefault("false")
-  private Boolean isCertified;
+    @ColumnDefault("false")
+    private Boolean isCertified;
 
-  public void certify() {
-    this.isCertified = true;
-  }
+    public void certify() {
+        this.isCertified = true;
+    }
 
-  @Builder
-  public CertificationNumber(Long id, String phoneNumber, Integer certificationNumber,
-      Boolean isCertified) {
-    this.id = id;
-    this.phoneNumber = phoneNumber;
-    this.certificationNumber = certificationNumber;
-    this.isCertified = isCertified;
-  }
+    @Builder
+    public CertificationNumber(Long id, String phoneNumber, Integer certificationNumber,
+                               Boolean isCertified) {
+        this.id = id;
+        this.phoneNumber = phoneNumber;
+        this.certificationNumber = certificationNumber;
+        this.isCertified = isCertified;
+    }
 }

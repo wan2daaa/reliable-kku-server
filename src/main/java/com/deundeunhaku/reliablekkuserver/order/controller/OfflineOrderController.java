@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/admin/offline-orders")
 public class OfflineOrderController {
 
-  private final OrderService orderService;
+    private final OrderService orderService;
 
-  @PostMapping
-  public ResponseEntity<Void> createOfflineOrder(@RequestBody OfflineOrderRequest request) {
-    orderService.createOfflineOrder(request);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
-  }
+    @PostMapping
+    public ResponseEntity<Void> createOfflineOrder(@RequestBody OfflineOrderRequest request) {
+        orderService.createOfflineOrder(request);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 }

@@ -26,6 +26,7 @@ class AdminOrderSalesCalendarControllerTest extends BaseControllerTest {
 
     @MockBean
     private AdminOrderService adminOrderService;
+
     @Test
     void 매출관리_달력의_데이터를_나타낸다() throws Exception {
         //given
@@ -39,21 +40,21 @@ class AdminOrderSalesCalendarControllerTest extends BaseControllerTest {
         );
         //when
         ResultActions resultActions = mockMvc.perform(get(API + "/admin/sales/calendar")
-                .param("date", date.toString()))
+                        .param("date", date.toString()))
                 .andDo(print());
         //then
-       resultActions.andExpect(status().isOk())
-            .andDo(document("admin-sales-calendar",
-                   queryParameters(
-                           parameterWithName("date").description("조회 달력 월")
-                    ),
-                    responseFields(
-                            fieldWithPath("lastMonthOnMonth").description("전월 대비 %"),
-                            fieldWithPath("totalSalesOfMonth").description("이번달 실 매출"),
-                            fieldWithPath("totalRefundSalesOfMonth").description("이번달 총 환불액"),
-                            fieldWithPath("total[].totalSales").description("일별 총 매출"),
-                            fieldWithPath("total[].refundTotalSales").description("일별 총 환불액")
-                    )));
+        resultActions.andExpect(status().isOk())
+                .andDo(document("admin-sales-calendar",
+                        queryParameters(
+                                parameterWithName("date").description("조회 달력 월")
+                        ),
+                        responseFields(
+                                fieldWithPath("lastMonthOnMonth").description("전월 대비 %"),
+                                fieldWithPath("totalSalesOfMonth").description("이번달 실 매출"),
+                                fieldWithPath("totalRefundSalesOfMonth").description("이번달 총 환불액"),
+                                fieldWithPath("total[].totalSales").description("일별 총 매출"),
+                                fieldWithPath("total[].refundTotalSales").description("일별 총 환불액")
+                        )));
 
-}
+    }
 }

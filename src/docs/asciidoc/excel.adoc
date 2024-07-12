@@ -15,7 +15,9 @@ link:index.html[메인 문서]
 include::{snippets}/admin/excel/success/http-request.adoc[]
 
 ==== Request Param
+
 include::{snippets}/admin/excel/success/query-parameters.adoc[]
 
 ==== Response
+
 include::{snippets}/admin/excel/success/http-response.adoc[]

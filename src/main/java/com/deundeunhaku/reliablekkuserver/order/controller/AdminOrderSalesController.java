@@ -3,8 +3,6 @@ package com.deundeunhaku.reliablekkuserver.order.controller;
 import com.deundeunhaku.reliablekkuserver.order.dto.AdminSalesEachTimeResponse;
 import com.deundeunhaku.reliablekkuserver.order.dto.AdminSalesResponse;
 import com.deundeunhaku.reliablekkuserver.order.service.AdminOrderService;
-import java.time.LocalDate;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,25 +10,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/admin/sales")
 public class AdminOrderSalesController {
 
-  private final AdminOrderService adminOrderService;
+    private final AdminOrderService adminOrderService;
 
-  @GetMapping
-  public ResponseEntity<AdminSalesResponse> getSales(@RequestParam(required = false) LocalDate startDate, @RequestParam(required = false) LocalDate endDate) {
+    @GetMapping
+    public ResponseEntity<AdminSalesResponse> getSales(@RequestParam(required = false) LocalDate startDate, @RequestParam(required = false) LocalDate endDate) {
 
-    if (endDate == null) endDate = startDate;
+        if (endDate == null) endDate = startDate;
 
-    return ResponseEntity.ok(adminOrderService.getSalesBetween(startDate, endDate));
-  }
+        return ResponseEntity.ok(adminOrderService.getSalesBetween(startDate, endDate));
+    }
 
-  @GetMapping("/monthly")
-  public ResponseEntity<List<AdminSalesEachTimeResponse>> getMonthlySales(@RequestParam LocalDate date) {
-    return ResponseEntity.ok(adminOrderService.getEachTimeSalesByDate(date));
-  }
+    @GetMapping("/monthly")
+    public ResponseEntity<List<AdminSalesEachTimeResponse>> getMonthlySales(@RequestParam LocalDate date) {
+        return ResponseEntity.ok(adminOrderService.getEachTimeSalesByDate(date));
+    }
 
 
 }

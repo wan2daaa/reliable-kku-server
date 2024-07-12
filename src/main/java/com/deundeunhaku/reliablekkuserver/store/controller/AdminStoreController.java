@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/admin/stores")
 public class AdminStoreController {
 
-  private final StoreService storeService;
+    private final StoreService storeService;
 
-  @GetMapping("/open-closed")
-  public ResponseEntity<Store> isOpenedOrClosed() {
-    Store store = storeService.getStoreOpenOrClosed(STORE_ID.DEUNDEUN_HAKU);
-    return ResponseEntity.ok(store);
-  }
+    @GetMapping("/open-closed")
+    public ResponseEntity<Store> isOpenedOrClosed() {
+        Store store = storeService.getStoreOpenOrClosed(STORE_ID.DEUNDEUN_HAKU);
+        return ResponseEntity.ok(store);
+    }
 
-  @PutMapping("/open-closed")
-  public ResponseEntity<Store> changeOpenClosed() {
-    Store store = storeService.setStoreOpenOrClosed(STORE_ID.DEUNDEUN_HAKU);
-    return ResponseEntity.ok(store);
-  }
+    @PutMapping("/open-closed")
+    public ResponseEntity<Store> changeOpenClosed() {
+        Store store = storeService.setStoreOpenOrClosed(STORE_ID.DEUNDEUN_HAKU);
+        return ResponseEntity.ok(store);
+    }
 
 }

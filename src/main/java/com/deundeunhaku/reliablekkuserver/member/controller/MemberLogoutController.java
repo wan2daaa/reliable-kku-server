@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/my-pages")
 public class MemberLogoutController {
 
-  @GetMapping("/logout")
-  public ResponseEntity<Void> logout(HttpServletResponse response,
-      @CookieValue(name = "refreshToken", required = false) Cookie refreshTokenCookie) {
-    if (refreshTokenCookie != null) {
-      refreshTokenCookie.setMaxAge(0);
-      response.addCookie(refreshTokenCookie);
-      return ResponseEntity.ok().build();
-    } else {
-      return ResponseEntity.badRequest().build();
+    @GetMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletResponse response,
+                                       @CookieValue(name = "refreshToken", required = false) Cookie refreshTokenCookie) {
+        if (refreshTokenCookie != null) {
+            refreshTokenCookie.setMaxAge(0);
+            response.addCookie(refreshTokenCookie);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
-  }
 }

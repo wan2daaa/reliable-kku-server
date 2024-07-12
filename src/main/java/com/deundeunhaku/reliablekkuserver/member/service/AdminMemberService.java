@@ -15,25 +15,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AdminMemberService {
 
-  private final PasswordEncoder passwordEncoder;
-  private final MemberRepository memberRepository;
-  private final RefreshTokenRepository refreshTokenRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final MemberRepository memberRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
-  public Member login(String phoneNumber, String password) {
-    return memberRepository.findByPhoneNumber(phoneNumber)
-        .filter(member -> passwordEncoder.matches(password, member.getPassword()))
-        .filter(Member::isAdmin)
-        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
-  }
+    public Member login(String phoneNumber, String password) {
+        return memberRepository.findByPhoneNumber(phoneNumber)
+                .filter(member -> passwordEncoder.matches(password, member.getPassword()))
+                .filter(Member::isAdmin)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+    }
 
-  public Slice<AdminMemberManagementResponse> getMemberList(String searchKeyword,
-      Pageable pageable) {
-    return memberRepository.findMemberBySearchKeyword(searchKeyword, pageable);
-  }
+    public Slice<AdminMemberManagementResponse> getMemberList(String searchKeyword,
+                                                              Pageable pageable) {
+        return memberRepository.findMemberBySearchKeyword(searchKeyword, pageable);
+    }
 
-  @Transactional
-  public void deleteRefreshToken(Member member) {
-    refreshTokenRepository.deleteByMember(member);
+    @Transactional
+    public void deleteRefreshToken(Member member) {
+        refreshTokenRepository.deleteByMember(member);
 
-  }
+    }
 }

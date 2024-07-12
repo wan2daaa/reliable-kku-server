@@ -19,7 +19,7 @@ public class AdminOrderSalesCalendarController {
     private final AdminOrderService adminOrderService;
 
     @GetMapping("/calendar")
-    public ResponseEntity<AdminSalesCalendarResponse> getSalesCalendar(@RequestParam(required = false) LocalDate date){
+    public ResponseEntity<AdminSalesCalendarResponse> getSalesCalendar(@RequestParam(required = false) LocalDate date) {
         return ResponseEntity.ok(adminOrderService.getSalesCalendar(date));
     }
 }

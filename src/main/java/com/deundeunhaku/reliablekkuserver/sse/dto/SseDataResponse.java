@@ -7,11 +7,11 @@ import lombok.Getter;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class SseDataResponse{
+public class SseDataResponse {
     private OrderStatus orderStatus;
     private Long leftMinutes;
 
-    public static SseDataResponse of(OrderStatus orderStatus, Long leftMinutes){
+    public static SseDataResponse of(OrderStatus orderStatus, Long leftMinutes) {
         return new SseDataResponse(orderStatus, leftMinutes);
     }
 }

@@ -11,7 +11,8 @@ public record TotalSalesMonthOfDay(
         this.totalSales = totalSales;
         this.refundTotalSales = refundTotalSales;
     }
-    public static TotalSalesMonthOfDay of(Integer totalSales, Integer refundTotalSales){
+
+    public static TotalSalesMonthOfDay of(Integer totalSales, Integer refundTotalSales) {
         return new TotalSalesMonthOfDay(totalSales, refundTotalSales);
     }
 }
